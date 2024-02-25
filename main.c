@@ -1,5 +1,7 @@
 #include "list.h"
 
+//test comm
+
 int main(void) {
     // Инициализация Raylib и создание окна
     InitWindow(1280, 700, "Raylib Test");
