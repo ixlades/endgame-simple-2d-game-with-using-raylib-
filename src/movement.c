@@ -1,9 +1,12 @@
+
 #include "../inc/movement.h"
 
 bool isOnGround(Rectangle *position, int floorPosition) {
     if (position->y >= floorPosition) {
         return true;
-    } else {
+    }
+    else
+    {
         return false;
     }
 }
@@ -22,6 +25,7 @@ void Jump(Rectangle *position, SizeData *stock, Rectangle *obstacle) {
 
     if (IsKeyPressed(KEY_SPACE) && (isOnPlatform(position, obstacle)
                                     || isOnGround(position, floorPos))) {
+
 
         stock->speedY = -stock->jumpForce;
     }
@@ -44,6 +48,7 @@ void Jump(Rectangle *position, SizeData *stock, Rectangle *obstacle) {
         position->y = floorPos;
     }
     if (isOnPlatform(position, obstacle)) {
+
         stock->speedY = 0;
         position->y = charOnPlatformPos;
     }
@@ -57,9 +62,3 @@ void movement(Rectangle *position, SizeData *stock) {
         if (IsKeyDown(KEY_LEFT)) position->x -= stock->speedX;
     }
 }
-
-
-
-
-
-
