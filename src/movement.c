@@ -26,7 +26,6 @@ void Jump(Rectangle *position, SizeData *stock, Rectangle *obstacle) {
     if (IsKeyPressed(KEY_SPACE) && (isOnPlatform(position, obstacle)
                                     || isOnGround(position, floorPos))) {
 
-
         stock->speedY = -stock->jumpForce;
     }
 
