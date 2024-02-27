@@ -11,9 +11,10 @@ int font_size_menu = 24;
 static int finish_mnu_screen = 0;
 float roundness_menu = 0.5f;
 float thickness_menu = 3.0f;
+
 void init_menu_screen(void)
 {
-    menu_bg = LoadImage("menu_background.png");
+    menu_bg = LoadImage("resource/menu_background.png");
     menu_texture = LoadTextureFromImage(menu_bg);
     play_button.rect = (Rectangle){GetScreenWidth() / 2 - 50, GetScreenHeight() / 4 - 50, 100, 50};
     play_button.color = RED;
@@ -63,6 +64,7 @@ void update_menu_screen(void)
     {
         about_button.color = RED;
     }
+
 }
 
 void draw_menu_screen(void)
@@ -77,6 +79,7 @@ void draw_menu_screen(void)
     DrawText(play_button.text, play_button.rect.x + play_button.rect.width / 2 - MeasureText(play_button.text, font_size_menu) / 2, play_button.rect.y + play_button.rect.height / 2 - font_size_menu / 2, font_size_menu, BLACK);
     DrawText(exit_button.text, exit_button.rect.x + exit_button.rect.width / 2 - MeasureText(exit_button.text, font_size_menu) / 2, exit_button.rect.y + exit_button.rect.height / 2 - font_size_menu / 2, font_size_menu, BLACK);
     DrawText(about_button.text, about_button.rect.x + about_button.rect.width / 2 - MeasureText(about_button.text, font_size_menu) / 2, about_button.rect.y + about_button.rect.height / 2 - font_size_menu / 2, font_size_menu, BLACK);
+
 }
 
 void unload_menu_screen(void)
