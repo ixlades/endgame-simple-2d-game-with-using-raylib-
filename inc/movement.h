@@ -1,6 +1,8 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
+#define NUM_OF_PLATFORMS 4
+
 
 #include <raylib.h>
 
@@ -17,8 +19,7 @@ typedef struct {
 
 bool isOnGround(Rectangle *position, const int floorPosition);          //проверка на то, стоит ли персонаж на земле
 bool isOnPlatform(Rectangle *position, Rectangle *obstacle);            //проверка на то, стоит ли персонаж на земле
-void Jump(Rectangle *position, SizeData *stock, Rectangle *obstacle);   //Прыжок + проверка на колизию(платформы)
-void movement(Rectangle *position, SizeData *stock);                    //движение(передвижение по горизонтали)
-
-
+void Jump(Rectangle *position, SizeData *stock, Rectangle platforms[NUM_OF_PLATFORMS]);   //Прыжок
+void movement(Rectangle *position, SizeData *stock);             //движение(передвижение по горизонтали) + прыжок
 #endif
+
