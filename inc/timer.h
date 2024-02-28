@@ -4,8 +4,10 @@
 #include  "raylib.h"
 
 extern int timer;
+extern bool isTimerRunning;
 
-void startTimer(void);
-void timerText(void);
+void StartTimer(void);
+void StopTimer(void);
+void TimerText(void);
 
 #endif
