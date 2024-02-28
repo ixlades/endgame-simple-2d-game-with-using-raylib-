@@ -23,3 +23,4 @@ void Jump(Rectangle *position, SizeData *stock, Rectangle platforms[NUM_OF_PLATF
 void movement(Rectangle *position, SizeData *stock);             //движение(передвижение по горизонтали) + прыжок
 #endif
 
+
