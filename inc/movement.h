@@ -16,7 +16,7 @@ typedef struct {
 
 
 bool isOnGround(Rectangle *position, const int floorPosition);          //проверка на то, стоит ли персонаж на земле
-bool isonPlatform(Rectangle *position, Rectangle *obstacle);            //проверка на то, стоит ли персонаж на земле
+bool isOnPlatform(Rectangle *position, Rectangle *obstacle);            //проверка на то, стоит ли персонаж на земле
 void Jump(Rectangle *position, SizeData *stock, Rectangle *obstacle);   //Прыжок + проверка на колизию(платформы)
 void movement(Rectangle *position, SizeData *stock);                    //движение(передвижение по горизонтали)
 
