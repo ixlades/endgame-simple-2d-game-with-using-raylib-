@@ -2,6 +2,7 @@
 #define FINISH_H
 
 #include "raylib.h"
+#include "timer.h"
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
@@ -13,9 +14,6 @@ typedef struct Button
     Color color;
 } Button;
 
-// LOAD TEXTURE
-// void loadBackgroundTexture(void);
-
 Button CreateButton(const char *texturePath, float scaleX, float scaleY, int x, int y, Color color);
 void DrawButton(Button button);
 Button CreateCenteredButton(const char *texturePath, float scaleX, float scaleY, int y, Color color);
@@ -24,5 +22,8 @@ void DrawPressEText(Button button, bool showText, Texture2D pressETexture);
 
 // WIN TEXT
 void DrawYouWinAnimation(void);
+
+// LOSE TEXT
+void DrawYouLoseAnimation(void);
 
 #endif
