@@ -4,15 +4,18 @@
 #include "../inc/screens.h"
 #include "../inc/inventory.h"
 
-Slot *create_inventory(Texture *slot_texture, Texture *slot_selected_tex) {
-	*slot_texture = LoadTexture("resource/slot.png");
-	*slot_selected_tex = LoadTexture("resource/slot_selected.png");
+Texture slot_texture;
+Texture slot_selected_texture;
+
+Slot* create_inventory() {
+	slot_texture = LoadTexture("../resource/slot.png");
+	slot_selected_texture = LoadTexture("../resource/slot_selected.png");
 
 	Slot* first_slot = malloc(sizeof(Slot));
 
 	first_slot->pos_vec.x = FIRST_SLOT_X;
 	first_slot->pos_vec.y = 0;
-	first_slot->slot_texture = *slot_texture;
+	first_slot->slot_texture = slot_texture;
 	first_slot->index = 1;
 	first_slot->item_type = EMPTY;
 	first_slot->next = NULL;
@@ -26,7 +29,7 @@ Slot *create_inventory(Texture *slot_texture, Texture *slot_selected_tex) {
 		new_slot->pos_vec.y = 0;
 		new_slot->index = k;
 		new_slot->item_type = EMPTY;
-		new_slot->slot_texture = *slot_texture;
+		new_slot->slot_texture = slot_texture;
 		new_slot->next = NULL;
 
 		curr->next = new_slot;
@@ -39,7 +42,7 @@ Slot *create_inventory(Texture *slot_texture, Texture *slot_selected_tex) {
 }
 
 
-void handle_inventory_events(int *new_slot_index) {
+void handle_inventory_events(int* new_slot_index) {
 
 	if (IsKeyPressed(KEY_ONE)) {
 		*new_slot_index = 1;
@@ -70,14 +73,19 @@ void handle_inventory_events(int *new_slot_index) {
 	}
 }
 
-void draw_inventory(Slot *first_slot, int new_slot_index, Texture slot_texture, Texture slot_selected_tex) {
+void draw_inventory(Slot* first_slot, int new_slot_index) {
 	for (Slot* curr = first_slot; curr != NULL; curr = curr->next) {
 		if (curr->index == new_slot_index) {
-			curr->slot_texture = slot_selected_tex;
+			curr->slot_texture = slot_selected_texture;
 		}
 		else {
 			curr->slot_texture = slot_texture;
 		}
 		DrawTextureEx(curr->slot_texture, curr->pos_vec, 0, SLOT_SCALE, WHITE);
 	}
+}
+
+void unload_inventory() {
+	UnloadTexture(slot_texture);
+	UnloadTexture(slot_selected_texture);
 }
