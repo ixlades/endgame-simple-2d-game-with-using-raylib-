@@ -139,6 +139,7 @@ void unload_main_level(void) {
     UnloadTexture(char_stand_left_level2);
     UnloadTexture(char_stand_right_level2);
 }
+
 bool isAllMissionDone(void) {
     return MISSIONS_DONE;
 }
