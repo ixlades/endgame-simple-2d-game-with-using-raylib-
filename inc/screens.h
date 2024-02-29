@@ -56,4 +56,5 @@ void init_main_level(void);
 void draw_main_level(void);
 void update_main_level(void);
 void unload_main_level(void);
+bool isDoorUnlock(void);
 #endif
