@@ -9,12 +9,11 @@
 #include "../inc/puzzle2.h"
 #include "../inc/player.h"
 #include "../inc/window.h"
-#include "../inc/finish.h"
+// #include "../inc/finish.h"
 #include "../inc/timer.h"
 
 enum GameScreen current_screen = MENU;
 int exit_game = 0;
-
 // global variables for inventory
 Slot* inventory;
 int new_slot_index = 1;
@@ -38,6 +37,15 @@ static void change_to_screen(enum GameScreen screen) {
     case MENU_ABOUT:
         unload_about_screen();
         break;
+    case LEVEL_ONE:
+        unload_level1_screen();
+        break;
+    case LEVEL_TWO:
+        unload_main_level();
+        break;
+    case LEVEL_THREE:
+        unload_finish_screen();
+        break;
     default:
         break;
     }
@@ -48,7 +56,15 @@ static void change_to_screen(enum GameScreen screen) {
     case MENU_ABOUT:
         init_about_screen();
         break;
-
+    case LEVEL_ONE:
+        init_level1_screen();
+        break;
+    case LEVEL_TWO:
+        init_main_level();
+        break;
+    case LEVEL_THREE:
+        init_finish_screen();
+        break;
     default:
         break;
     }
@@ -65,15 +81,33 @@ void update_draw_frame(void) {
         update_menu_screen();
         if (finish_menu_screen() == 1) {
             change_to_screen(MENU_ABOUT);
+            break;
         }
-
+        if (finish_menu_screen() == 2) {
+            change_to_screen(LEVEL_ONE);
+            break;
+        }
         break;
     case MENU_ABOUT:
         update_about_screen();
         if (finish_about_screen() == 1) {
             change_to_screen(MENU);
         }
-
+        break;
+    case LEVEL_ONE:
+        update_level1_screen();
+        if (finish_level1_screen() == 1) {
+            change_to_screen(LEVEL_TWO);
+        }
+        break;
+    case LEVEL_TWO:
+        update_main_level();
+        break;
+    case LEVEL_THREE:
+        update_finish_screen();
+        if (finish_last_screen() == 1) {
+            change_to_screen(MENU);
+        }
         break;
     default:
         break;
@@ -86,6 +120,15 @@ void update_draw_frame(void) {
         break;
     case MENU_ABOUT:
         draw_about_screen();
+        break;
+    case LEVEL_ONE:
+        draw_level1_screen();
+        break;
+    case LEVEL_TWO:
+        draw_main_level();
+        break;
+    case LEVEL_THREE:
+        draw_finish_screen();
         break;
     default:
         break;
@@ -110,6 +153,7 @@ void update_draw_frame(void) {
 
 int main(void) {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Title");
+    SetTargetFPS(60);
     init_menu_screen();
     inventory = create_inventory(); // creating inventory
     items = create_items_in_room(current_screen); // creating items

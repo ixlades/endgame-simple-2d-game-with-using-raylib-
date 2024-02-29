@@ -10,8 +10,8 @@ Texture slot_texture;
 Texture slot_selected_texture;
 
 Slot* create_inventory() {
-	slot_texture = LoadTexture("../resource/slot.png");
-	slot_selected_texture = LoadTexture("../resource/slot_selected.png");
+	slot_texture = LoadTexture("resource/slot.png");
+	slot_selected_texture = LoadTexture("resource/slot_selected.png");
 
 	Slot* first_slot = malloc(sizeof(Slot));
 

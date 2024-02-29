@@ -1,3 +1,4 @@
+#include <math.h>
 #include "../inc/objects.h"
 #include "../inc/window.h"
 
@@ -10,16 +11,16 @@ Texture note_tex;
 int puzzle1_result;
 
 Object* create_objects_in_room(enum GameScreen current_screen) {
-	box_tex = LoadTexture("../resource/box.png");
-	box_destroyed_tex = LoadTexture("../resource/box_destroyed.png");
-	terminal_tex = LoadTexture("../resource/terminal.png");
-	terminal_unlocked_tex = LoadTexture("../resource/terminal_unlocked.png");
-	note_tex = LoadTexture("../resource/note.png");
+	box_tex = LoadTexture("resource/box.png");
+	box_destroyed_tex = LoadTexture("resource/box_destroyed.png");
+	terminal_tex = LoadTexture("resource/terminal.png");
+	terminal_unlocked_tex = LoadTexture("resource/terminal_unlocked.png");
+	note_tex = LoadTexture("resource/note.png");
 	
 
-	if (current_screen == MENU) {
+	if (current_screen == LEVEL_ONE) {
 		Object* box = malloc(sizeof(Object));
-		box->pos_vec.x = 500;
+		box->pos_vec.x = 550;
 		box->pos_vec.y = 500;
 		box->interaction_type = TO_DESTROY;
 		box->isUnlocked = false;
@@ -32,7 +33,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 	
 		Object* terminal = malloc(sizeof(Object));
 		terminal->pos_vec.x = 1100;
-		terminal->pos_vec.y = 450;
+		terminal->pos_vec.y = 550;
 		terminal->interaction_type = TO_UNLOCK;
 		terminal->isUnlocked = false;
 		terminal->item_to_unlock = CARD;
@@ -61,7 +62,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 
 void do_objects(Object *objects, Player protagonist, Slot *inventory, int new_slot_index, Window hint, Item *items) {
 	for (Object* curr_object = objects; curr_object != NULL; curr_object = curr_object->next) {
-		if (abs((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (abs((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)))) {
+		if (fabsf((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (fabsf((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)))) {
 			for (Slot* curr_slot = inventory; curr_slot != NULL; curr_slot = curr_slot->next) {
 				if (curr_slot->index == new_slot_index) {
 					if (curr_object->interaction_type == TO_DESTROY && curr_object->item_to_unlock == curr_slot->item_type && curr_object->isUnlocked == false) {
@@ -108,7 +109,7 @@ void do_objects(Object *objects, Player protagonist, Slot *inventory, int new_sl
 
 void do_puzzles(Object *objects, Player protagonist) {
 	for (Object* curr_object = objects; curr_object != NULL; curr_object = curr_object->next) {
-		if (curr_object->is_puzzle_opened && abs((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (abs((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)))) {
+		if (curr_object->is_puzzle_opened && fabsf((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (fabsf((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)))) {
 			if (curr_object->puzzle_type == PUZZZLE_1) {
 				if (!IsKeyPressed(KEY_Q)) {
 					puzzle1_result = do_puzzle1();

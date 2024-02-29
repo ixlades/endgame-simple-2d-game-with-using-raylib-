@@ -10,20 +10,20 @@ Rectangle characer;
 SizeData stock;
 
 void init_main_level(void) {
-    main_bg = LoadTexture("resource/space-back.png");
+    main_bg = LoadTexture("resource/finish_bg.png");
     platformTexture = LoadTexture("resource/platform.png");
-    characterTexture = LoadTexture("resource/skeleton.png");
+    characterTexture = LoadTexture("resource/player.png");
 
     //---------------------------Stock------------------------------------
-    stock.screenHeight = SCREEN_HEIGHT;
-    stock.screenWidth = SCREEN_WIDTH;
-    stock.speedX = 4;
-    stock.speedY = 0.0f;
-    stock.jumpForce = 7;
-    stock.gravity = 0.1f;
+    stock.screenHeight = GetScreenHeight();
+    stock.screenWidth = GetScreenWidth();
+    stock.speedX = 10.0f;
+    stock.speedY = 1.0f;
+    stock.jumpForce = 15;
+    stock.gravity = 0.5f;
 
     //---------------------------Character------------------------------------
-    characer = (Rectangle){ 0, 600 , characterTexture.width, characterTexture.height };
+    characer = (Rectangle){ 100, 500 , characterTexture.width, characterTexture.height};
 
     //---------------------------Platforms------------------------------------
     platform[0] = (Rectangle){ 0, 200, platformTexture.width, platformTexture.height };
@@ -42,7 +42,13 @@ void draw_platforms(void) {
     }
 }
 void draw_main_level(void) {
-    DrawTexture(main_bg, 0, 0, WHITE);
+    // DrawTexture(main_bg, 0, 0, WHITE);
+    DrawTexturePro(
+        main_bg,
+        (Rectangle){0.0f, 0.0f, (float)main_bg.width,
+                    (float)-main_bg.height},
+        (Rectangle){0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT},
+        (Vector2){0, 0}, 0.0f, WHITE);
     draw_platforms();
     DrawTexture(characterTexture, characer.x, characer.y, WHITE);
 }

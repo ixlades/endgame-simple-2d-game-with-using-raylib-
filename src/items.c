@@ -1,11 +1,11 @@
 #include "../inc/items.h"
-
+#include <math.h>
 Texture item_card_tex;
 Texture item_dwang_tex;
 
 Item* create_items_in_room(enum GameScreen current_screen) {
-	item_card_tex = LoadTexture("../resource/item_card.png");
-	item_dwang_tex = LoadTexture("../resource/item_dwang.png");
+	item_card_tex = LoadTexture("resource/item_card.png");
+	item_dwang_tex = LoadTexture("resource/item_dwang.png");
 
 	if (current_screen == LEVEL_ONE) {
 		Item* card = malloc(sizeof(Item)); // to unlock terminal
@@ -28,12 +28,12 @@ Item* create_items_in_room(enum GameScreen current_screen) {
 
 		return dwang;
 	}
-		return NULL;
+	return NULL;
 }
 
 void do_items(Item* items, Slot* inventory, Player protagonist, Window hint) {
 	for (Item* curr_item = items; curr_item != NULL; curr_item = curr_item->next) {
-		if ((abs(protagonist.pos.x + 64 - curr_item->pos_vec.x + 32) <= HERO_RANGE && (abs(protagonist.pos.y + 64 - curr_item->pos_vec.y + 32)) <= HERO_RANGE) && curr_item->isAvaiable == true && curr_item->isInInventory == false) {
+		if ((fabsf(protagonist.pos.x + 64 - curr_item->pos_vec.x + 32) <= HERO_RANGE && (fabsf(protagonist.pos.y + 64 - curr_item->pos_vec.y + 32)) <= HERO_RANGE) && curr_item->isAvaiable == true && curr_item->isInInventory == false) {
 			draw_hint_e(hint, curr_item->pos_vec.x, curr_item->pos_vec.y - 60);
 
 			if (IsKeyPressed(KEY_E)) {

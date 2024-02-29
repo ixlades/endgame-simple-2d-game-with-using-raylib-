@@ -3,20 +3,26 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
-enum GameScreen
-{
+enum GameScreen {
     MENU,
     MENU_ABOUT,
-    LEVEL_ONE
+    LEVEL_ONE,
+    LEVEL_TWO,
+    LEVEL_THREE,
 };
 
-typedef struct s_button
-{
+typedef struct s_button {
     Rectangle rect;
     Color color;
     char *text;
 
 } Button;
+
+typedef struct Button {
+    Rectangle rect;
+    Texture2D texture;
+    Color color;
+} ButtonFinish;
 
 extern int exit_game;
 extern enum GameScreen current_screen;
@@ -32,4 +38,21 @@ void draw_about_screen(void);
 void update_about_screen(void);
 void unload_about_screen(void);
 int finish_about_screen(void);
+
+void init_level1_screen(void);
+void draw_level1_screen(void);
+void update_level1_screen(void);
+void unload_level1_screen(void);
+int finish_level1_screen(void);
+
+void init_finish_screen(void);
+void draw_finish_screen(void);
+void update_finish_screen(void);
+void unload_finish_screen(void);
+int finish_last_screen(void);
+
+void init_main_level(void);
+void draw_main_level(void);
+void update_main_level(void);
+void unload_main_level(void);
 #endif

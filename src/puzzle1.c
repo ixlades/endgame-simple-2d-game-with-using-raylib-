@@ -18,7 +18,7 @@ int sequence[] = { 9, 1, 6, 7, 8, 10, 3, 2, 4, 5};
 Rectangle retryButton = { (SCREEN_WIDTH - BUTTON_SIZE) / 2 - 10, SCREEN_HEIGHT - BUTTON_SIZE - 240, BUTTON_SIZE + 20, BUTTON_SIZE - 20 };
 
 void init_puzzle1() {
-    background_texture = LoadTexture("C:/Users/38097/Desktop/repos/resource/backgroundcode.png");
+    background_texture = LoadTexture("resource/backgroundcode.png");
 
     int numRows = 2;
     int numColumns = BUTTONS_PER_ROW;

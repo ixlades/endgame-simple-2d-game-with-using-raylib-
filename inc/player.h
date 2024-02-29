@@ -10,3 +10,5 @@ typedef struct s_player {
     int direction;
     bool isWalking;
 } Player;
+
+extern Player player;

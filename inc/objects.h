@@ -34,5 +34,5 @@ void do_objects(Object* objects, Player protagonist, Slot* inventory, int new_sl
 Object* create_objects_in_room(enum GameScreen current_screen);
 void draw_objects(Object* first_object);
 void free_objects(Object* objects);
-void unload_objects()
+void unload_objects();
 void do_puzzles(Object* objects, Player protagonist);

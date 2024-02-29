@@ -21,6 +21,5 @@ bool isOnGround(Rectangle *position, const int floorPosition);          //про
 bool isOnPlatform(Rectangle *position, Rectangle *obstacle);            //проверка на то, стоит ли персонаж на земле
 void Jump(Rectangle *position, SizeData *stock, Rectangle platforms[NUM_OF_PLATFORMS]);   //Прыжок
 void movement(Rectangle *position, SizeData *stock);             //движение(передвижение по горизонтали) + прыжок
+void movement_lvl1(Vector2 *position, SizeData *stock, const int myTextureWidth);
 #endif
-
-

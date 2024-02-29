@@ -1,3 +1,5 @@
+#include "raylib.h"
+#include "../inc/player.h"
 #include "../inc/movement.h"
 
 bool isOnGround(Rectangle *position, int floorPosition) {
@@ -10,12 +12,25 @@ bool isOnGround(Rectangle *position, int floorPosition) {
     }
 }
 
+bool isOnGroundLvl1(Vector2 *position, const int floorPosition)
+{
+    if (position->y >= floorPosition)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
 bool isOnPlatform(Rectangle *position, Rectangle *obstacle) {
     return CheckCollisionRecs(*position, *obstacle);
 }
 
 void Jump(Rectangle *position, SizeData *stock, Rectangle platforms[NUM_OF_PLATFORMS]) {
-    const int floorPos = 600;
+    const int floorPos = 500;
     int i;
 
     for (i = 0; i < NUM_OF_PLATFORMS; i++) {
@@ -50,9 +65,55 @@ void Jump(Rectangle *position, SizeData *stock, Rectangle platforms[NUM_OF_PLATF
 
 void movement(Rectangle *position, SizeData *stock) {
     if ((position->x + stock->speedX) <= stock->screenWidth - position->width) {
-        if (IsKeyDown(KEY_RIGHT)) position->x += stock->speedX;
+        if (IsKeyDown(KEY_RIGHT)) {
+            position->x = stock->speedX;
+        } 
     }
     if ((position->x - stock->speedX) >= 0) {
-        if (IsKeyDown(KEY_LEFT)) position->x -= stock->speedX;
+        if (IsKeyDown(KEY_LEFT)) {
+            position->x = stock->speedX;
+        }
     }
 }
+void movement_lvl1(Vector2 *position, SizeData *stock, const int myTextureWidth)
+{
+    // const int floorPosition = stock->screenHeight / 2;
+    const int floorPosition = 500;
+
+
+    //    --------Движение по x----------
+    if ((position->x + stock->speedX) <= stock->screenWidth - myTextureWidth)
+    {
+        if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
+            position->x += stock->speedX;
+            player.direction = 1;
+            player.isWalking = true;
+        }
+    }
+    if ((position->x - stock->speedX) >= 0)
+    {
+        
+        if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
+            position->x -= stock->speedX;
+            player.direction = -1;
+            player.isWalking = true;
+        }
+    }
+
+    //       --------Прыжок----------
+    if (IsKeyPressed(KEY_SPACE) && isOnGroundLvl1(position, floorPosition))
+    {
+        stock->speedY = -stock->jumpForce;
+    }
+
+    // Логика прыжка
+    position->y += stock->speedY;
+    stock->speedY += stock->gravity;
+
+    if (isOnGroundLvl1(position, floorPosition))
+    {
+        stock->speedY = 0;
+        position->y = floorPosition;
+    }
+}
+

@@ -1,7 +1,6 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#include  "raylib.h"
 
 extern int timer;
 extern bool isTimerRunning;

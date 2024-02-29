@@ -3,7 +3,7 @@
 Texture puzzle2_tex;
 
 void init_puzzle2() {
-	puzzle2_tex = LoadTexture("C:/Users/38097/Desktop/repos/resource/note_puzzle2.png");
+	puzzle2_tex = LoadTexture("resource/note_puzzle2.png");
 }
 
 void do_puzzle2() {

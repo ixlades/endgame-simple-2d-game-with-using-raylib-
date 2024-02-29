@@ -17,4 +17,3 @@ Slot* create_inventory();
 void handle_inventory_events(int* new_slot_index);
 void draw_inventory(Slot* first_slot, int new_slot_index);
 void unload_inventory();
-

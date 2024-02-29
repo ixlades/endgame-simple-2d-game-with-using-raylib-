@@ -7,7 +7,10 @@ Button exit_button = {.text = "Exit"};
 Button about_button = {.text = "About"};
 Image menu_bg;
 Texture2D menu_texture;
-int font_size_menu = 24;
+Texture2D escape;
+Texture2D from;
+Texture2D spaceship;
+int font_size_menu = 30;
 static int finish_mnu_screen = 0;
 float roundness_menu = 0.5f;
 float thickness_menu = 3.0f;
@@ -16,11 +19,14 @@ void init_menu_screen(void)
 {
     menu_bg = LoadImage("resource/menu_background.png");
     menu_texture = LoadTextureFromImage(menu_bg);
-    play_button.rect = (Rectangle){GetScreenWidth() / 2 - 50, GetScreenHeight() / 4 - 50, 100, 50};
+    escape = LoadTexture("resource/escape.png");
+    from = LoadTexture("resource/from.png");
+    spaceship = LoadTexture("resource/spaceship.png");
+    play_button.rect = (Rectangle){GetScreenWidth() / 2 - 50, GetScreenHeight() / 4 + 150, 150, 80};
     play_button.color = RED;
-    exit_button.rect = (Rectangle){GetScreenWidth() / 2 - 50, GetScreenHeight() / 4 + 150, 100, 50};
+    exit_button.rect = (Rectangle){GetScreenWidth() / 2 - 50, GetScreenHeight() / 4 + 350, 150, 80};
     exit_button.color = RED;
-    about_button.rect = (Rectangle){GetScreenWidth() / 2 - 50, GetScreenHeight() / 4 + 50, 100, 50};
+    about_button.rect = (Rectangle){GetScreenWidth() / 2 - 50, GetScreenHeight() / 4 + 250, 150, 80};
     about_button.color = RED;
     finish_mnu_screen = 0;
 }
@@ -32,7 +38,7 @@ void update_menu_screen(void)
         play_button.color = BLUE;
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            printf("Click play button\n");
+            finish_mnu_screen = 2;
         }
     }
     else
@@ -70,6 +76,11 @@ void update_menu_screen(void)
 void draw_menu_screen(void)
 {
     DrawTexture(menu_texture, 0, 0, RAYWHITE);
+    
+    DrawTexture(escape, GetScreenWidth() / 2 - MeasureText("ESCAPE", 60) / 2, 50, RAYWHITE);
+    DrawTexture(spaceship, GetScreenWidth() / 2 - MeasureText("SPACESHIP", 60) / 2, 200, RAYWHITE);
+    DrawTexture(from, GetScreenWidth() / 2 + escape.width / 4 - MeasureText("FROM", 60), 40 + escape.height, RAYWHITE);
+    
     DrawRectangleRounded(play_button.rect, roundness_menu, 0.0f, play_button.color);
     DrawRectangleRoundedLines(play_button.rect, roundness_menu, 0.0f, thickness_menu, PINK);
     DrawRectangleRounded(exit_button.rect, roundness_menu, 0.0f, exit_button.color);
@@ -86,6 +97,10 @@ void unload_menu_screen(void)
 {
     UnloadTexture(menu_texture);
     UnloadImage(menu_bg);
+    UnloadTexture(spaceship);
+    UnloadTexture(from);
+    UnloadTexture(escape);
+
 }
 
 int finish_menu_screen(void)
