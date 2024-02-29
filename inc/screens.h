@@ -41,6 +41,7 @@ int finish_about_screen(void);
 
 void init_level1_screen(void);
 void draw_level1_screen(void);
+bool check_puzzle_completion_lvl1(int result);
 void update_level1_screen(void);
 void unload_level1_screen(void);
 int finish_level1_screen(void);

@@ -66,12 +66,12 @@ void Jump(Rectangle *position, SizeData *stock, Rectangle platforms[NUM_OF_PLATF
 void movement(Rectangle *position, SizeData *stock) {
     if ((position->x + stock->speedX) <= stock->screenWidth - position->width) {
         if (IsKeyDown(KEY_RIGHT)) {
-            position->x = stock->speedX;
+            position->x += stock->speedX;
         } 
     }
     if ((position->x - stock->speedX) >= 0) {
         if (IsKeyDown(KEY_LEFT)) {
-            position->x = stock->speedX;
+            position->x -= stock->speedX;
         }
     }
 }

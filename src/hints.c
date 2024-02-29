@@ -3,7 +3,7 @@
 Texture hint_e_tex;
 
 Window create_hint() {
-	hint_e_tex = LoadTexture("../resource/hint_e.png");
+	hint_e_tex = LoadTexture("resource/hint_E.png");
 	Window hint_e;
 	hint_e.window_texture = hint_e_tex;
 	return hint_e;

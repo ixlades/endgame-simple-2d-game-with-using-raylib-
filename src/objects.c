@@ -21,7 +21,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 	if (current_screen == LEVEL_ONE) {
 		Object* box = malloc(sizeof(Object));
 		box->pos_vec.x = 550;
-		box->pos_vec.y = 500;
+		box->pos_vec.y = 550;
 		box->interaction_type = TO_DESTROY;
 		box->isUnlocked = false;
 		box->item_to_unlock = DWANG;
@@ -46,7 +46,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 
 		Object* note = malloc(sizeof(Object));
 		note->pos_vec.x = 900;
-		note->pos_vec.y = 470;
+		note->pos_vec.y = 600;
 		note->interaction_type = TO_OPEN;
 		note->isUnlocked = true;
 		note->puzzle_type = PUZZLE_2;
@@ -134,7 +134,7 @@ void do_puzzles(Object *objects, Player protagonist) {
 		}
 
 		if (puzzle1_result == 1){
-			//smth
+			check_puzzle_completion_lvl1(puzzle1_result);
 		}
 		curr_object->is_puzzle_opened = false;
 	}
