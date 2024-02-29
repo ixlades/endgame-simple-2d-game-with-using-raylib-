@@ -4,6 +4,8 @@
 #include "movement.h"
 #include "screens.h"
 
+#define MISSIONS_DONE true
+
 Texture2D main_bg;
 Texture2D platformTexture;
 Texture2D characterTexture;
@@ -13,11 +15,11 @@ Rectangle characer;
 
 SizeData stock;
 
-
 void init_main_level(void);
 void draw_platforms(void);
 void draw_main_level(void);
 void update_main_level(void);
 void unload_main_level(void);
+bool isAllMissionDone(void);
 
 #endif

@@ -11,6 +11,7 @@
 #include "../inc/window.h"
 // #include "../inc/finish.h"
 #include "../inc/timer.h"
+//#include "../inc/main_level.h"
 
 enum GameScreen current_screen = MENU;
 int exit_game = 0;
@@ -102,6 +103,9 @@ void update_draw_frame(void) {
         break;
     case LEVEL_TWO:
         update_main_level();
+        if (isDoorUnlock()) {
+            change_to_screen(LEVEL_THREE);
+        }
         break;
     case LEVEL_THREE:
         update_finish_screen();
