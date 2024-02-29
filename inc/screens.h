@@ -7,6 +7,7 @@ enum GameScreen
 {
     MENU,
     MENU_ABOUT,
+    LEVEL_ONE
 };
 
 typedef struct s_button

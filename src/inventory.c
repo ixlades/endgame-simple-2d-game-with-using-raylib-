@@ -3,6 +3,8 @@
 #include <string.h>
 #include "../inc/screens.h"
 #include "../inc/inventory.h"
+#include "../inc/common_enums.h"
+#include "../inc/items.h"
 
 Texture slot_texture;
 Texture slot_selected_texture;
@@ -82,6 +84,10 @@ void draw_inventory(Slot* first_slot, int new_slot_index) {
 			curr->slot_texture = slot_texture;
 		}
 		DrawTextureEx(curr->slot_texture, curr->pos_vec, 0, SLOT_SCALE, WHITE);
+		Vector2 item_pos;
+		item_pos.x = curr->pos_vec.x - 4;
+		item_pos.y = curr->pos_vec.y;
+		DrawTextureEx(curr->item_texture, item_pos, 0, ITEM_DEFAULT_SCALE * 1.7, WHITE);
 	}
 }
 

@@ -1,6 +1,16 @@
 #include "raylib.h"
+#include "../inc/common_enums.h"
+#include "../inc/hints.h"
 #include "../inc/screens.h"
 #include "../inc/inventory.h"
+#include "../inc/items.h"
+#include "../inc/objects.h"
+#include "../inc/puzzle1.h"
+#include "../inc/puzzle2.h"
+#include "../inc/player.h"
+#include "../inc/window.h"
+#include "../inc/finish.h"
+#include "../inc/timer.h"
 
 enum GameScreen current_screen = MENU;
 int exit_game = 0;
@@ -8,6 +18,16 @@ int exit_game = 0;
 // global variables for inventory
 Slot* inventory;
 int new_slot_index = 1;
+
+// global vars for items and objects
+Item* items;
+Object* objects;
+
+// Global variable for hint
+Window hint;
+
+// player is obligated for some functions
+Player player;
 
 static void change_to_screen(enum GameScreen screen) {
 
@@ -32,7 +52,11 @@ static void change_to_screen(enum GameScreen screen) {
     default:
         break;
     }
+    free_items(items); // free previous items
+    free_objects(objects); // free previous objects
     current_screen = screen;
+    items = create_items_in_room(current_screen); // creating new items
+    objects = create_objects_in_room(current_screen); // creating new items
 }
 
 void update_draw_frame(void) {
@@ -70,6 +94,17 @@ void update_draw_frame(void) {
     if (current_screen > MENU_ABOUT) { // inventory will be drawn only on our levels
         draw_inventory(inventory, new_slot_index);
     }
+     // draw items and objects if they exist in room
+    if (items != NULL) {
+        draw_items(items);
+    }
+    if (objects != NULL) {
+        draw_objects(objects);
+    }
+    do_items(items, inventory, player, hint); // doing items logic
+    do_objects(objects, player, inventory, new_slot_index, hint, items); // doing objects logic
+    do_puzzles(objects, player); // doing puzzles
+
     EndDrawing();
 }
 
@@ -77,6 +112,13 @@ int main(void) {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Title");
     init_menu_screen();
     inventory = create_inventory(); // creating inventory
+    items = create_items_in_room(current_screen); // creating items
+    objects = create_objects_in_room(current_screen); // creating objects
+    hint = create_hint(); // creating hint_e
+
+    // initializing puzzles
+    init_puzzle1();
+    init_puzzle2();
     
     while (!WindowShouldClose()) {
         if (exit_game) {
@@ -87,5 +129,7 @@ int main(void) {
         update_draw_frame();
     }
     unload_inventory(); // unload inventory textures;
+    unload_items(); // unload items textures
+    unload_objects(); // unload objects textures
     CloseWindow();
 }
