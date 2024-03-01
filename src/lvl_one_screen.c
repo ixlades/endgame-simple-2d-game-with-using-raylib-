@@ -2,8 +2,9 @@
 #include "../inc/player.h"
 #include "../inc/inventory.h"
 #include "../inc/movement.h"
+#include "../inc/hints.h"
 
-Texture2D background_texture_lvl1;
+Window hint_lvl1;
 Image char_stand_img;
 Texture2D char_stand_right;
 Texture2D char_stand_left;
@@ -18,6 +19,7 @@ SizeData stock_lvl1 = {0};
 Texture wall;
 Vector2 wall_pos;
 
+Texture2D background_texture_lvl1;
 Vector2 background_pos;
 Vector2 background_pos1;
 Texture2D exit_door_lvl1;
@@ -37,11 +39,13 @@ bool check_puzzle_completion_lvl1(int result) {
 void init_level1_screen(void) {
    
     background_texture_lvl1 = LoadTexture("resource/level_one_bg.png");
-    exit_door_lvl1 = LoadTexture("resource/door_lvl_1.png");
-    wall = LoadTexture("C:/Users/38097/Desktop/rep_4/resource/wall.png");
+    exit_door_lvl1 = LoadTexture("resource/door_lvl1_1.png");
+    
+    wall = LoadTexture("resource/wall.png");
     wall_pos.x = 0;
     wall_pos.y = 0;
 
+    hint_lvl1 = create_hint();
     background_pos.x = 0;
     background_pos.y = 0;
     background_pos1.x = 1008;
@@ -63,11 +67,11 @@ void init_level1_screen(void) {
     char_walk2_left = LoadTextureFromImage(char_walk2_img);
 
     stock_lvl1.speedX = 10.0f;
-    stock_lvl1.speedY = 1.0f;
+    stock_lvl1.speedY = 0.0f;
     stock_lvl1.screenWidth = GetScreenWidth();
     stock_lvl1.screenHeight = GetScreenHeight();
-    stock_lvl1.jumpForce = 15;
-    stock_lvl1.gravity = 0.5f;
+    stock_lvl1.jumpForce = 6.5;
+    stock_lvl1.gravity = 0.2f;
     player.texture = LoadTexture("resource/player.png");
     player.pos = (Vector2){410, 500};
     player.isWalking = false;
@@ -110,8 +114,11 @@ void update_level1_screen(void) {
 
     }
 
-    if (player.pos.x <= 90 && player.pos.y == 500 && lvl_one_finished) {
-        finish_lvl_one_screen = 1;
+    if (player.pos.x <= 40 && player.pos.y == 500) {
+        if (IsKeyPressed(KEY_E) && lvl_one_finished)
+        {
+            finish_lvl_one_screen = 1;
+        }  
     }
     
 }
@@ -119,7 +126,11 @@ void update_level1_screen(void) {
 void draw_level1_screen(void) {
     DrawTextureEx(background_texture_lvl1, background_pos1, 0.0, 3.5, WHITE);
     DrawTextureEx(background_texture_lvl1, background_pos, 0.0, 3.5, WHITE);
-    DrawTextureEx(exit_door_lvl1,(Vector2){50,550},0.0f,5.0f,WHITE);
+    DrawTextureEx(wall, wall_pos, 0.0f, 3.5, WHITE);
+    DrawTextureEx(exit_door_lvl1,(Vector2){0, 400}, 0.0f, 5.0f, WHITE);
+    if (player.pos.x <= 40 && player.pos.y == 500) {
+        draw_hint_e(hint_lvl1,10,400);
+    }
 }
 
 void draw_player(void) {

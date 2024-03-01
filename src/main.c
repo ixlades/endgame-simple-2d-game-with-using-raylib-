@@ -14,7 +14,7 @@
 //#include "../inc/main_level.h"
 #include "../inc/puzzle3.h"
 #include "../inc/puzzle4.h"
-#include "../inc/main_level.h"
+// #include "../inc/main_level.h"
 
 enum GameScreen current_screen = MENU;
 int exit_game = 0;
@@ -159,9 +159,10 @@ void update_draw_frame(void) {
         draw_player_lvl2();
     }  
     if (current_screen > MENU_ABOUT) { // inventory will be drawn only on our levels
-    draw_inventory(inventory, new_slot_index);
+        draw_inventory(inventory, new_slot_index);
 
-    EndDrawing();
+   }
+   EndDrawing();
 }
 
 int main(void) {

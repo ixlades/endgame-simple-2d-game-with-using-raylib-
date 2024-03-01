@@ -26,7 +26,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 	computer_tex = LoadTexture("resource/computer.png");
 	computer_unlocked_tex = LoadTexture("resource/computer_unlocked.png");
 	panel_tex = LoadTexture("resource/panel.png");
-	hide_tex = LoadTexture("C:/Users/38097/Desktop/rep_4/resource/hide.png");
+	hide_tex = LoadTexture("resource/hide.png");
 	
 
 	if (current_screen == LEVEL_ONE) {

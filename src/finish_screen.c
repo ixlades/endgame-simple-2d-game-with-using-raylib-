@@ -101,8 +101,8 @@ void DrawPressEText(ButtonFinish button, bool showText, Texture2D pressETexture)
         DrawTexturePro(
             pressETexture,
             (Rectangle){0, 0, pressETexture.width, pressETexture.height},
-            (Rectangle){textureX, textureY, pressETexture.width * 2,
-                        pressETexture.height * 2},
+            (Rectangle){textureX, textureY, pressETexture.width * 2.5,
+                        pressETexture.height * 2.5},
             (Vector2){0, 0}, 0.0f, WHITE);
     }
 }
@@ -146,7 +146,7 @@ void init_finish_screen(void) {
 }
 
 void update_finish_screen(void) {
-    StartTimer();
+    // StartTimer();
     movement_lvl1(&player.pos, &stock_finish, player.texture.width);
     if (player.isWalking) {
         double time = GetTime() * 10;
@@ -185,7 +185,7 @@ void update_finish_screen(void) {
     if (showPressEText && IsKeyDown(KEY_E)) {
         centered_button.color = (Color){215, 189, 91, 155};
         showYouWinText = true;
-        StopTimer();
+        // StopTimer();
         
     }
     
@@ -207,12 +207,12 @@ void draw_finish_screen(void) {
         (Vector2){0, 0}, 0.0f, WHITE);
     DrawButton(centered_button);
     DrawPressEText(centered_button, showPressEText, pressETexture);
-    TimerText();
-    if (timer == 0) {
-        showYouWinText = false;
-        DrawYouLoseAnimation();
-        animation_time--;
-    }
+    // TimerText();
+    // if (timer == 0) {
+    //     showYouWinText = false;
+    //     DrawYouLoseAnimation();
+    //     animation_time--;
+    // }
 
     // // CHECK WIN
     if (showYouWinText) {

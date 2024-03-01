@@ -1,7 +1,7 @@
 #include "../inc/puzzle3.h"
 #include <stdio.h>
 
-Texture2D background;
+Texture2D background_pz1;
 
 bool clickedThisFrame[NUM_IMAGES] = { false };
 int counter = 0;
@@ -31,7 +31,7 @@ void init_puzzle3() {
         imageTextures[i] = warning_tex;
     }
 
-    background = LoadTexture("resource/backgroundcode.png");
+    background_pz1 = LoadTexture("resource/backgroundcode.png");
 }
 
 int do_puzzle3() {
@@ -72,7 +72,7 @@ int do_puzzle3() {
     }
 
 
-    DrawTexture(background, SCREEN_WIDTH / 2 - background.width / 2, SCREEN_HEIGHT / 2 - background.height / 2, WHITE);
+    DrawTexture(background_pz1, SCREEN_WIDTH / 2 - background_pz1.width / 2, SCREEN_HEIGHT / 2 - background_pz1.height / 2, WHITE);
 
     for (int i = 0; i < NUM_IMAGES; i++)
     {

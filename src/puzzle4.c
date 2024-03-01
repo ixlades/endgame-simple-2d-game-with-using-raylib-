@@ -1,7 +1,7 @@
 #include "../inc/puzzle4.h"
 
 ImageInfo images[MAX_IMAGES];
-Texture2D background_texture;
+Texture2D background_texture_pz4;
 Texture2D checkmarkTexture;
 
 Vector2 targetPoints[NUM_TARGET_POINTS];
@@ -15,7 +15,7 @@ bool targetReached[NUM_TARGET_POINTS] = { false };
 double startTime = 0.0;
 
 void init_puzzle4() {
-    background_texture = LoadTexture("resource/space2.png");
+    background_texture_pz4 = LoadTexture("resource/space2.png");
     checkmarkTexture = LoadTexture("resource/checkmark.png");
 
     targetPoints[0] = (Vector2){ 520 , 370 };
@@ -83,7 +83,7 @@ void update_puzzle4() {
 }
 
 void draw_puzzle4() {
-    DrawTextureEx(background_texture, (Vector2) { 320, 150 }, 0.0, 1.0, WHITE);
+    DrawTextureEx(background_texture_pz4, (Vector2) { 320, 150 }, 0.0, 1.0, WHITE);
 
     for (int j = 0; j < NUM_TARGET_POINTS; j++) {
         DrawCircleV(targetPoints[j], 10, WHITE);

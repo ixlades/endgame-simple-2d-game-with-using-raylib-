@@ -15,6 +15,8 @@ typedef struct {
     float gravity;
 } SizeData;
 
+extern bool isWalking;
+extern int direction;
 
 
 bool isOnGround(Rectangle *position, const int floorPosition);          //проверка на то, стоит ли персонаж на земле

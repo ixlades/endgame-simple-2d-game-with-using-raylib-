@@ -26,15 +26,16 @@ Texture2D char_walk1_left_level2;
 Image char_walk2_img_level2;
 Texture2D char_walk2_right_level2;
 Texture2D char_walk2_left_level2;
-
-SizeData stock;
+bool finish_main_level;
+int all_tasks_completed;
+SizeData stock1;
 
 void init_main_level(void) {
     main_bg = LoadTexture("resource/background_lvl2.png");
     platformTexture = LoadTexture("resource/platform1.png");
     platformTextureSmall = LoadTexture("resource/platform2.png");
     characterTexture = LoadTexture("resource/player.png");
-    doorMainLevelTexture = LoadTexture("resource/door_lvl_one.png");
+    doorMainLevelTexture = LoadTexture("resource/door_locked.png");
 
     char_stand_img_level2 = LoadImage("resource/player.png");
     char_stand_right_level2 = LoadTextureFromImage(char_stand_img_level2);
@@ -51,14 +52,15 @@ void init_main_level(void) {
     ImageFlipHorizontal(&char_walk2_img_level2);
     char_walk2_left_level2 = LoadTextureFromImage(char_walk2_img_level2);
 
-    //---------------------------Stock------------------------------------
-    stock.screenHeight = GetScreenHeight();
-    stock.screenWidth = GetScreenWidth();
-    stock.speedX = 10.0f;
-    stock.speedY = 0.0f;
-    stock.jumpForce = 6.5f;
-    stock.gravity = 0.1f;
-
+    //---------------------------Stock1------------------------------------
+    stock1.screenHeight = GetScreenHeight();
+    stock1.screenWidth = GetScreenWidth();
+    stock1.speedX = 10.0f;
+    stock1.speedY = 0.0f;
+    stock1.jumpForce = 6.5f;
+    stock1.gravity = 0.1f;
+    finish_main_level = false;
+    all_tasks_completed = 1;
     //---------------------------Character------------------------------------
     characer = (Rectangle){ 100, 700 , (characterTexture.width * 2) - 7 , (characterTexture.height * 3) - 13};
 
@@ -74,7 +76,7 @@ void init_main_level(void) {
     platform[4] = (Rectangle){ 650 + platformTextureSmall.width, 340 + platformTextureSmall.height,
                                platformTextureSmall.width, platformTextureSmall.height };
     //------------------------------Door-----------------------------------
-    doorMainLevel = (Rectangle){ 1280 - doorMainLevelTexture.width * 4, 250 + platformTexture.height - doorMainLevelTexture.height * 5,
+    doorMainLevel = (Rectangle){ 1280 - doorMainLevelTexture.width * 3.5, 260 + platformTexture.height - doorMainLevelTexture.height * 4,
                                  doorMainLevelTexture.width * 4 , doorMainLevelTexture.height * 5 };
 
     //------------------------------Hint----------------------------
@@ -100,10 +102,10 @@ void draw_main_level(void) {
     // DrawTextureEx(characterTexture, (Vector2){characer.x - characer.width - 10,
     //                                        characer.y - characer.height }, 0.0, 6.0, WHITE);
     DrawTextureEx(doorMainLevelTexture, (Vector2){ doorMainLevel.x ,
-                  doorMainLevel.y}, 0.0, 5.0, WHITE);
+                  doorMainLevel.y}, 0.0, 3.5, WHITE);
     if (CheckCollisionRecs(characer, platform[0])) {
-        if (MISSIONS_DONE) {
-            DrawTextureEx(hint_e_texture, (Vector2) {doorMainLevel.x - 15 + doorMainLevel.width / 2,
+        if (all_tasks_completed) {
+            DrawTextureEx(hint_e_texture, (Vector2) {doorMainLevel.x -30 + doorMainLevel.width / 2,
                                         doorMainLevel.y - 60 }, 0, 4, WHITE);
         }
     }
@@ -115,8 +117,8 @@ void draw_player_lvl2(void) {
 }
 
 void update_main_level(void) {
-    movement(&characer, &stock);
-    Jump(&characer, &stock, platform);
+    movement(&characer, &stock1);
+    Jump(&characer, &stock1, platform);
 
     if (isWalking) {
         double time = GetTime() * 10;
@@ -160,16 +162,17 @@ void unload_main_level(void) {
 }
 
 bool isAllMissionDone(void) {
-    return MISSIONS_DONE;
+    return all_tasks_completed;
 }
 
 bool isDoorUnlock(void) {
     if (CheckCollisionRecs(characer, doorMainLevel)) {
-        if (MISSIONS_DONE) {
+        if (all_tasks_completed) {
             DrawTextureEx(hint_e_texture, (Vector2) { doorMainLevel.x - doorMainLevel.width / 2,
-                                                   doorMainLevel.y - hint_e_door.height}, 0, 4, WHITE);
+                                                   doorMainLevel.y }, 0, 4, WHITE);
             if (IsKeyPressed(KEY_E)) {
-                return true;
+                finish_main_level = true;
+                return finish_main_level;
             }
         }
         characer.x = doorMainLevel.x - characer.width;
