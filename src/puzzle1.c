@@ -17,7 +17,7 @@ int sequence[] = { 9, 1, 6, 7, 8, 10, 3, 2, 4, 5};
 
 Rectangle retryButton = { (SCREEN_WIDTH - BUTTON_SIZE) / 2 - 10, SCREEN_HEIGHT - BUTTON_SIZE - 240, BUTTON_SIZE + 20, BUTTON_SIZE - 20 };
 
-void init_puzzle1() {
+void init_puzzle1(void) {
     background_texture_pz1 = LoadTexture("resource/terminal_screen.png");
 
     int numRows = 2;
@@ -42,7 +42,7 @@ void init_puzzle1() {
 
 }
 
-int do_puzzle1() {
+int do_puzzle1(void) {
     //int result = 0;
 
     if (!gameOver && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))

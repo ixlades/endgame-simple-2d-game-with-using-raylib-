@@ -17,6 +17,8 @@
 #include "puzzle4.h"
 #include <malloc.h>
 
+#include "screens.h"
+
 typedef struct s_object {
 	Vector2 pos_vec;
 	Texture object_texture;
@@ -36,5 +38,5 @@ void do_objects(Object* objects, Player protagonist, Slot* inventory, int new_sl
 Object* create_objects_in_room(enum GameScreen current_screen);
 void draw_objects(Object* first_object);
 void free_objects(Object* objects);
-void unload_objects();
+void unload_objects(void);
 void do_puzzles(Object* objects, Player protagonist);

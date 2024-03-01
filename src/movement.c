@@ -89,7 +89,7 @@ void movement_lvl1(Vector2 *position, SizeData *stock, const int myTextureWidth)
 
 
     //    --------Движение по x----------
-    if ((position->x + stock->speedX) <= stock->screenWidth - myTextureWidth)
+    if ((position->x + stock->speedX) <= stock->screenWidth - myTextureWidth * 4)
     {
         if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
             position->x += stock->speedX;

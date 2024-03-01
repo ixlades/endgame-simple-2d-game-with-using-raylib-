@@ -17,5 +17,5 @@
 
 #define CODE_LENGTH 10
 
-void init_puzzle1();
-int do_puzzle1();
+void init_puzzle1(void);
+int do_puzzle1(void);

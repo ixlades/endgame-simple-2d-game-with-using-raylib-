@@ -22,7 +22,7 @@ typedef struct {
     float scale;
 } ImageInfo;
 
-void init_puzzle4();
-void update_puzzle4();
-void draw_puzzle4();
-int do_puzzle4();
+void init_puzzle4(void);
+void update_puzzle4(void);
+void draw_puzzle4(void);
+int do_puzzle4(void);

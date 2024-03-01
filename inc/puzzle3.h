@@ -20,5 +20,5 @@
 
 void InitializeImages(void);
 bool CheckOverlap(int index);
-void init_puzzle3();
-int do_puzzle3();
+void init_puzzle3(void);
+int do_puzzle3(void);

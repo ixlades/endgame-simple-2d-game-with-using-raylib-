@@ -4,7 +4,7 @@
 #define NUM_OF_PLATFORMS 5
 
 
-#include <raylib.h>
+#include "raylib.h"
 
 typedef struct {
     float speedX;      //скорость персонажа по горизонтали

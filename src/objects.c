@@ -237,7 +237,7 @@ void free_objects(Object* objects) {
 	}
 }
 
-void unload_objects() {
+void unload_objects(void) {
 	UnloadTexture(box_tex);
 	UnloadTexture(box_destroyed_tex);
 	UnloadTexture(terminal_tex);

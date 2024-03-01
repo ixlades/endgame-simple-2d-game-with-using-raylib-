@@ -22,7 +22,7 @@ Rectangle counterArea = { SCREEN_WIDTH - 564, SCREEN_HEIGHT - 300, 564, 300 };
 
 Rectangle retryButton_pz3 = { (SCREEN_WIDTH - BUTTON_SIZE) / 2 - 10, SCREEN_HEIGHT - BUTTON_SIZE - 240, BUTTON_SIZE + 20, BUTTON_SIZE - 20 };
 
-void init_puzzle3() {
+void init_puzzle3(void) {
     InitializeImages();
     warning_tex = LoadTexture("resource/warning.png");
 
@@ -34,7 +34,7 @@ void init_puzzle3() {
     background_pz1 = LoadTexture("resource/computer_screen.png");
 }
 
-int do_puzzle3() {
+int do_puzzle3(void) {
 
     for (int i = 0; i < NUM_IMAGES; i++)
     {

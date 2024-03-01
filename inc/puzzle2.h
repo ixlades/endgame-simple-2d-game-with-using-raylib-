@@ -16,5 +16,5 @@
 
 #define NOTE_SCALE 6
 
-void init_puzzle2();
-void do_puzzle2();
+void init_puzzle2(void);
+void do_puzzle2(void);

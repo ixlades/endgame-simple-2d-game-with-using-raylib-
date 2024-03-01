@@ -63,15 +63,6 @@ void DrawYouLoseAnimation(void) {
         fontSize, spacing, color);
 }
 
-void DrawButton(ButtonFinish button) {
-    // DrawTexturePro(
-    //     button.texture,
-    //     (Rectangle){0, 0, button.texture.width, button.texture.height},
-    //     button.rect, (Vector2){0, 0}, 0.0f, button.color);
-
-    //DrawTextureEx(button.texture, (Vector2){SCREEN_WIDTH / 2 - 536 / 2}, 0 , 0, WHITE);
-}
-
 void CreateCenteredButton(const char *texturePath, float scaleX, float scaleY,
                           int y, Color color) {
     centered_button.texture = LoadTexture(texturePath);
@@ -209,7 +200,6 @@ void draw_finish_screen(void) {
         (Rectangle){player.pos.x, player.pos.y, player.texture.width * playerScaleX,
                     player.texture.height * playerScaleY},
         (Vector2){0, 0}, 0.0f, WHITE);
-    DrawButton(centered_button);
     DrawPressEText(centered_button, showPressEText, pressETexture);
     // TimerText();
     // if (timer == 0) {

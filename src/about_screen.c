@@ -40,21 +40,21 @@ void draw_about_screen(void) {
              back_to_menu.rect.y + back_to_menu.rect.height / 2 -
                  font_size_about / 2,
              font_size_about, BLACK);
-    DrawText("Our team", GetScreenWidth() / 2 - 50, GetScreenHeight() / 8,
+    DrawText("Our team", GetScreenWidth() / 2 - 70, GetScreenHeight() / 8,
              font_size_about + 12, RED);
 
-    DrawText("kaplanich:", GetScreenWidth() / 2 - 200,
-             (float)GetScreenHeight() / 8 + 80, font_size_about, RED);
-    DrawText("andromeda:", GetScreenWidth() / 2 - 200,
-             (float)GetScreenHeight() / 8 + (80 * 2), font_size_about, RED);
-    DrawText("devitfro:", GetScreenWidth() / 2 - 200,
-             (float)GetScreenHeight() / 8 + (80 * 3), font_size_about, RED);
-    DrawText("heo1wayy:", GetScreenWidth() / 2 - 200,
-             (float)GetScreenHeight() / 8 + (80 * 4), font_size_about, RED);
-    DrawText("chorv:", GetScreenWidth() / 2 - 200,
-             (float)GetScreenHeight() / 8 + (80 * 5), font_size_about, RED);
-    DrawText("ixlades:", GetScreenWidth() / 2 - 200,
-             (float)GetScreenHeight() / 8 + (80 * 6), font_size_about, RED);
+    DrawText("kaplanich:", GetScreenWidth() / 2 - 42,
+             (float)GetScreenHeight() / 8 + 80, font_size_about, (Color){180, 169, 175, 255});
+    DrawText("andromeda:", GetScreenWidth() / 2 - 42,
+             (float)GetScreenHeight() / 8 + (80 * 2), font_size_about, (Color){180, 169, 175, 255});
+    DrawText("devitfro:", GetScreenWidth() / 2 - 42,
+             (float)GetScreenHeight() / 8 + (80 * 3), font_size_about, (Color){180, 169, 175, 255});
+    DrawText("heo1wayy:", GetScreenWidth() / 2 - 42,
+             (float)GetScreenHeight() / 8 + (80 * 4), font_size_about, (Color){180, 169, 175, 255});
+    DrawText("chorv:", GetScreenWidth() / 2 - 42,
+             (float)GetScreenHeight() / 8 + (80 * 5), font_size_about, (Color){180, 169, 175, 255});
+    DrawText("ixlades:", GetScreenWidth() / 2 - 42,
+             (float)GetScreenHeight() / 8 + (80 * 6), font_size_about, (Color){180, 169, 175, 255});
 }
 
 void unload_about_screen(void) {

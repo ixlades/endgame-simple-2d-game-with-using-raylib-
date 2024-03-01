@@ -14,7 +14,7 @@ bool targetReached[NUM_TARGET_POINTS] = { false };
 
 double startTime = 0.0;
 
-void init_puzzle4() {
+void init_puzzle4(void) {
     background_texture_pz4 = LoadTexture("resource/space2.png");
     checkmarkTexture = LoadTexture("resource/checkmark.png");
 
@@ -49,7 +49,7 @@ void init_puzzle4() {
 }
 
 
-void update_puzzle4() {
+void update_puzzle4(void) {
     for (int i = 0; i < MAX_IMAGES; i++) {
         Rectangle imageRec = { images[i].position.x, images[i].position.y, images[i].texture.width * images[i].scale, images[i].texture.height * images[i].scale };
 
@@ -82,7 +82,7 @@ void update_puzzle4() {
     }
 }
 
-void draw_puzzle4() {
+void draw_puzzle4(void) {
     DrawTextureEx(background_texture_pz4, (Vector2) { 320, 150 }, 0.0, 1.0, WHITE);
 
     for (int j = 0; j < NUM_TARGET_POINTS; j++) {
@@ -98,7 +98,7 @@ void draw_puzzle4() {
     }
 }
 
-int do_puzzle4() {
+int do_puzzle4(void) {
     update_puzzle4();
     draw_puzzle4();
     if (targetReached[0] && targetReached[1] && targetReached[2] && targetReached[3]) {
