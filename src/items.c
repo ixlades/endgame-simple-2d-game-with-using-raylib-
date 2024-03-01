@@ -4,8 +4,8 @@ Texture item_card_tex;
 Texture item_dwang_tex;
 
 Item* create_items_in_room(enum GameScreen current_screen) {
-	item_card_tex = LoadTexture("resource/item_card.png");
-	item_dwang_tex = LoadTexture("resource/item_dwang.png");
+	item_card_tex = LoadTexture("resource/Item_card.png");
+	item_dwang_tex = LoadTexture("resource/Item_dwang.png");
 
 	if (current_screen == LEVEL_ONE) {
 		Item* card = malloc(sizeof(Item)); // to unlock terminal

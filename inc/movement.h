@@ -1,7 +1,7 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
-#define NUM_OF_PLATFORMS 4
+#define NUM_OF_PLATFORMS 5
 
 
 #include <raylib.h>

@@ -4,4 +4,4 @@
 #include "window.h"
 
 void draw_hint_e(Window hint, int x, int y);
-Window create_hint();
+Window create_hint(void);
