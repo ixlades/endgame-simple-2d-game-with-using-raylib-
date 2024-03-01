@@ -68,12 +68,17 @@ void movement(Rectangle *position, SizeData *stock) {
         if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
             position->x += stock->speedX;
             player.pos.x = position->x;
+            isWalking = true;
+            direction = 1;
         } 
     }
     if ((position->x - stock->speedX) >= 0) {
         if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
             position->x -= stock->speedX;
             player.pos.x = position->x;
+            player.pos.y = position->y;
+            isWalking = true;
+            direction = -1;
         }
     }
 }

@@ -59,4 +59,5 @@ void unload_main_level(void);
 bool isDoorUnlock(void);
 
 void draw_player(void);
+void draw_player_lvl2(void);
 #endif

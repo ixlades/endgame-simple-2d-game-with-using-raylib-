@@ -26,5 +26,3 @@ void init_puzzle4();
 void update_puzzle4();
 void draw_puzzle4();
 int do_puzzle4();
-
-

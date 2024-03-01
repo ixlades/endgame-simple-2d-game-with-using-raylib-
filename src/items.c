@@ -8,7 +8,7 @@ Texture item_card_from_door_tex;
 Item* create_items_in_room(enum GameScreen current_screen) {
 	item_card_tex = LoadTexture("resource/Item_card.png");
 	item_dwang_tex = LoadTexture("resource/Item_dwang.png");
-	item_screwdriver_tex = LoadTexture("/resource/item_screwdriver.png");
+	item_screwdriver_tex = LoadTexture("resource/item_screwdriver.png");
 
 	if (current_screen == LEVEL_ONE) {
 		Item* card = malloc(sizeof(Item)); // to unlock terminal
