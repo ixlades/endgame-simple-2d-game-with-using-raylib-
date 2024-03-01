@@ -4,7 +4,7 @@ bool gameOver = false;
 bool victory = false;
 bool wrongCodeEntered = false;
 
-Texture2D background_texture;
+Texture2D background_texture_pz1;
 
 int enteredCode[CODE_LENGTH] = { 0 };
 int codeIndex = 0;
@@ -18,7 +18,7 @@ int sequence[] = { 9, 1, 6, 7, 8, 10, 3, 2, 4, 5};
 Rectangle retryButton = { (SCREEN_WIDTH - BUTTON_SIZE) / 2 - 10, SCREEN_HEIGHT - BUTTON_SIZE - 240, BUTTON_SIZE + 20, BUTTON_SIZE - 20 };
 
 void init_puzzle1() {
-    background_texture = LoadTexture("resource/backgroundcode.png");
+    background_texture_pz1 = LoadTexture("resource/backgroundcode.png");
 
     int numRows = 2;
     int numColumns = BUTTONS_PER_ROW;
@@ -110,7 +110,7 @@ int do_puzzle1() {
     }
 
     Vector2 background_pos = { .x = 320, .y = 150 };
-    DrawTextureEx(background_texture, background_pos, 0.0, 1.0, WHITE);
+    DrawTextureEx(background_texture_pz1, background_pos, 0.0, 1.0, WHITE);
 
     ClearBackground(RAYWHITE);
 

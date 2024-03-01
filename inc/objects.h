@@ -13,6 +13,8 @@
 
 #include "puzzle1.h"
 #include "puzzle2.h"
+#include "puzzle3.h"
+#include "puzzle4.h"
 #include <malloc.h>
 
 typedef struct s_object {

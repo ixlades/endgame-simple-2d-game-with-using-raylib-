@@ -12,6 +12,8 @@
 // #include "../inc/finish.h"
 #include "../inc/timer.h"
 //#include "../inc/main_level.h"
+#include "../inc/puzzle3.h"
+#include "../inc/puzzle4.h"
 
 enum GameScreen current_screen = MENU;
 int exit_game = 0;
@@ -167,6 +169,8 @@ int main(void) {
     // initializing puzzles
     init_puzzle1();
     init_puzzle2();
+    init_puzzle3();
+    init_puzzle4();
     
     while (!WindowShouldClose()) {
         if (exit_game) {

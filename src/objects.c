@@ -7,8 +7,13 @@ Texture box_destroyed_tex;
 Texture terminal_tex;
 Texture terminal_unlocked_tex;
 Texture note_tex;
+Texture computer_tex;
+Texture computer_unlocked_tex;
+Texture panel_tex;
 
 int puzzle1_result;
+int puzzle3_result;
+int puzzle4_result;
 
 Object* create_objects_in_room(enum GameScreen current_screen) {
 	box_tex = LoadTexture("resource/box.png");
@@ -16,12 +21,15 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 	terminal_tex = LoadTexture("resource/terminal.png");
 	terminal_unlocked_tex = LoadTexture("resource/terminal_unlocked.png");
 	note_tex = LoadTexture("resource/note.png");
+	computer_tex = LoadTexture("resource/computer.png");
+	computer_unlocked_tex = LoadTexture("resource/computer_unlocked.png");
+	panel_tex = LoadTexture("resource/panel.png");
 	
 
 	if (current_screen == LEVEL_ONE) {
 		Object* box = malloc(sizeof(Object));
-		box->pos_vec.x = 550;
-		box->pos_vec.y = 550;
+		box->pos_vec.x = 525;
+		box->pos_vec.y = 519;
 		box->interaction_type = TO_DESTROY;
 		box->isUnlocked = false;
 		box->item_to_unlock = DWANG;
@@ -33,7 +41,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 	
 		Object* terminal = malloc(sizeof(Object));
 		terminal->pos_vec.x = 1100;
-		terminal->pos_vec.y = 550;
+		terminal->pos_vec.y = 480;
 		terminal->interaction_type = TO_UNLOCK;
 		terminal->isUnlocked = false;
 		terminal->item_to_unlock = CARD;
@@ -45,8 +53,8 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 		terminal->next = box;
 
 		Object* note = malloc(sizeof(Object));
-		note->pos_vec.x = 900;
-		note->pos_vec.y = 600;
+		note->pos_vec.x = 850;
+		note->pos_vec.y = 490;
 		note->interaction_type = TO_OPEN;
 		note->isUnlocked = true;
 		note->puzzle_type = PUZZLE_2;
@@ -54,15 +62,37 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 		note->object_texture = note_tex;
 		note->next = terminal;
 
+		Object* computer = malloc(sizeof(Object));
+		computer->pos_vec.x = 300;
+		computer->pos_vec.y = 520;
+		computer->interaction_type = TO_OPEN;
+		computer->isUnlocked = true;
+		computer->puzzle_type = PUZZLE_3;
+		computer->is_puzzle_opened = false;
+		computer->object_texture = computer_tex;
+		computer->alternative_texture = computer_unlocked_tex;
+		computer->next = note;
 
-		return note;
+		Object* panel = malloc(sizeof(Object));
+		panel->pos_vec.x = 990;
+		panel->pos_vec.y = 540;
+		panel->interaction_type = TO_OPEN;
+		panel->isUnlocked = true;
+		panel->puzzle_type = PUZZLE_4;
+		panel->is_puzzle_opened = false;
+		panel->object_texture = panel_tex;
+		panel->alternative_texture = panel_tex;
+		panel->next = computer;
+
+
+		return panel;
 	}
 	return NULL;
 }
 
 void do_objects(Object *objects, Player protagonist, Slot *inventory, int new_slot_index, Window hint, Item *items) {
 	for (Object* curr_object = objects; curr_object != NULL; curr_object = curr_object->next) {
-		if (fabsf((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (fabsf((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)))) {
+		if (fabsf((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (fabsf((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)) <= HERO_RANGE)) {
 			for (Slot* curr_slot = inventory; curr_slot != NULL; curr_slot = curr_slot->next) {
 				if (curr_slot->index == new_slot_index) {
 					if (curr_object->interaction_type == TO_DESTROY && curr_object->item_to_unlock == curr_slot->item_type && curr_object->isUnlocked == false) {
@@ -109,7 +139,7 @@ void do_objects(Object *objects, Player protagonist, Slot *inventory, int new_sl
 
 void do_puzzles(Object *objects, Player protagonist) {
 	for (Object* curr_object = objects; curr_object != NULL; curr_object = curr_object->next) {
-		if (curr_object->is_puzzle_opened && fabsf((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (fabsf((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)))) {
+		if (curr_object->is_puzzle_opened && fabsf((protagonist.pos.x + 64) - (curr_object->pos_vec.x + 64)) <= HERO_RANGE && (fabsf((protagonist.pos.y + 64) - (curr_object->pos_vec.y + 64)) <= HERO_RANGE)) {
 			if (curr_object->puzzle_type == PUZZZLE_1) {
 				if (!IsKeyPressed(KEY_Q)) {
 					puzzle1_result = do_puzzle1();
@@ -128,6 +158,24 @@ void do_puzzles(Object *objects, Player protagonist) {
 				}
 				break;
 			}
+			if (curr_object->puzzle_type == PUZZLE_3) {
+				if (!IsKeyPressed(KEY_Q)) {
+					puzzle3_result = do_puzzle3();
+				}
+				else {
+					curr_object->is_puzzle_opened = false;
+				}
+				break;
+			}
+			if (curr_object->puzzle_type == PUZZLE_4) {
+				if (!IsKeyPressed(KEY_Q)) {
+					puzzle4_result = do_puzzle4();
+				}
+				else {
+					curr_object->is_puzzle_opened = false;
+				}
+				break;
+			}
 		}
 		else {
 			curr_object->is_puzzle_opened = false;
@@ -135,6 +183,12 @@ void do_puzzles(Object *objects, Player protagonist) {
 
 		if (puzzle1_result == 1){
 			check_puzzle_completion_lvl1(puzzle1_result);
+		}
+		if (puzzle3_result == 1) {
+			//something
+		}
+		if (puzzle4_result == 1) {
+			// something
 		}
 		curr_object->is_puzzle_opened = false;
 	}
