@@ -10,7 +10,9 @@ enum interaction_type {
 enum puzzle_type {
 	NONE,
 	PUZZZLE_1,
-	PUZZLE_2
+	PUZZLE_2,
+	PUZZLE_3,
+	PUZZLE_4
 };
 
 enum item_type {
