@@ -18,7 +18,7 @@ int sequence[] = { 9, 1, 6, 7, 8, 10, 3, 2, 4, 5};
 Rectangle retryButton = { (SCREEN_WIDTH - BUTTON_SIZE) / 2 - 10, SCREEN_HEIGHT - BUTTON_SIZE - 240, BUTTON_SIZE + 20, BUTTON_SIZE - 20 };
 
 void init_puzzle1() {
-    background_texture_pz1 = LoadTexture("resource/backgroundcode.png");
+    background_texture_pz1 = LoadTexture("resource/terminal_screen.png");
 
     int numRows = 2;
     int numColumns = BUTTONS_PER_ROW;
@@ -109,16 +109,16 @@ int do_puzzle1() {
         }
     }
 
-    Vector2 background_pos = { .x = 320, .y = 150 };
-    DrawTextureEx(background_texture_pz1, background_pos, 0.0, 1.0, WHITE);
+    Vector2 background_pos = { .x = SCREEN_WIDTH / 2 - (64 * 9) / 2, .y = 170 };
+    DrawTextureEx(background_texture_pz1, background_pos, 0.0, 9.0, WHITE);
 
-    ClearBackground(RAYWHITE);
+    //ClearBackground(RAYWHITE);
 
     for (int i = 0; i < 10; i++)
     {
         // кнопка с обводом
         DrawRectangleRec(buttons[i], Fade(buttonColors[i], 0.3));
-        DrawRectangleLinesEx(buttons[i], 2, DARKBLUE);
+        DrawRectangleLinesEx(buttons[i], 2, DARKGREEN);
         DrawText(TextFormat("%d", i + 1), buttons[i].x + BUTTON_SIZE / 2 - MeasureText(TextFormat("%d", i + 1), 20) / 2, buttons[i].y + BUTTON_SIZE / 2 - 10, 20, WHITE);
     }
 
