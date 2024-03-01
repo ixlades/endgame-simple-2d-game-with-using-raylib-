@@ -31,18 +31,18 @@ Item* create_items_in_room(enum GameScreen current_screen) {
 
 		return dwang;
 	}
-		if (current_screen == LEVEL_TWO) {
-		Item* screwdriver = malloc(sizeof(Item));
-		screwdriver->pos_vec.x = 550;
-		screwdriver->pos_vec.y = 620;
-		screwdriver->type = SCREWDRIVER;
-		screwdriver->isInInventory = false;
-		screwdriver->isAvaiable = false;
-		screwdriver->item_texture = item_screwdriver_tex;
-		screwdriver->next = NULL;
+	// 	if (current_screen == LEVEL_TWO) {
+	// 	Item* screwdriver = malloc(sizeof(Item));
+	// 	screwdriver->pos_vec.x = 550;
+	// 	screwdriver->pos_vec.y = 620;
+	// 	screwdriver->type = SCREWDRIVER;
+	// 	screwdriver->isInInventory = false;
+	// 	screwdriver->isAvaiable = false;
+	// 	screwdriver->item_texture = item_screwdriver_tex;
+	// 	screwdriver->next = NULL;
 
-		return screwdriver;
-	}
+	// 	return screwdriver;
+	// }
 	return NULL;
 }
 

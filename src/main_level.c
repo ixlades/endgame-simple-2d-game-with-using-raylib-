@@ -1,5 +1,6 @@
 #include "../inc/main_level.h"
 #include "../inc/player.h"
+#include "math.h"
 
 Texture2D hint_e_texture;
 Window hint_e_door;
@@ -12,6 +13,7 @@ Texture2D platformTexture;
 Texture2D platformTextureSmall;
 Texture2D characterTexture;
 Texture2D doorMainLevelTexture;
+Texture2D floor_bg;
 
 Rectangle platform[NUM_OF_PLATFORMS];
 Rectangle characer;
@@ -36,6 +38,7 @@ void init_main_level(void) {
     platformTextureSmall = LoadTexture("resource/platform2.png");
     characterTexture = LoadTexture("resource/player.png");
     doorMainLevelTexture = LoadTexture("resource/door_locked.png");
+    floor_bg = LoadTexture("C:/Users/38097/Desktop/rep_5/resource/floor.png");
 
     char_stand_img_level2 = LoadImage("resource/player.png");
     char_stand_right_level2 = LoadTextureFromImage(char_stand_img_level2);
@@ -60,7 +63,7 @@ void init_main_level(void) {
     stock1.jumpForce = 6.5f;
     stock1.gravity = 0.1f;
     finish_main_level = false;
-    all_tasks_completed = 1;
+    //all_tasks_completed = 1;
     //---------------------------Character------------------------------------
     characer = (Rectangle){ 100, 700 , (characterTexture.width * 2) - 7 , (characterTexture.height * 3) - 13};
 
@@ -98,6 +101,7 @@ void draw_main_level(void) {
     //         (Rectangle){0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT},
     //         (Vector2){0, 0}, 0.0f, BROWN);
     DrawTextureEx(main_bg, (Vector2) {0, 0}, 0 , 4.5, WHITE);
+    DrawTextureEx(floor_bg, (Vector2) { 0, 650 },0, 9, WHITE);
     draw_platforms();
     // DrawTextureEx(characterTexture, (Vector2){characer.x - characer.width - 10,
     //                                        characer.y - characer.height }, 0.0, 6.0, WHITE);
@@ -161,21 +165,23 @@ void unload_main_level(void) {
     UnloadTexture(char_stand_right_level2);
 }
 
-bool isAllMissionDone(void) {
-    return all_tasks_completed;
+bool isAllMissionDone(int result) {
+    if (result == 1) {
+        all_tasks_completed = 1;
+        return true;
+    }
+    return false;
 }
 
 bool isDoorUnlock(void) {
-    if (CheckCollisionRecs(characer, doorMainLevel)) {
+    if (fabsf((characer.x + 64) - (doorMainLevel.x + 64)) <= HERO_RANGE && (fabsf((characer.y + 64) - (doorMainLevel.y + 64)) <= HERO_RANGE)) {
         if (all_tasks_completed) {
-            DrawTextureEx(hint_e_texture, (Vector2) { doorMainLevel.x - doorMainLevel.width / 2,
-                                                   doorMainLevel.y }, 0, 4, WHITE);
             if (IsKeyPressed(KEY_E)) {
                 finish_main_level = true;
                 return finish_main_level;
             }
         }
-        characer.x = doorMainLevel.x - characer.width;
+
     }
     return false;
 }

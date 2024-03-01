@@ -29,7 +29,7 @@ int animation_time;
 
 void DrawYouWinAnimation(void) {
     static int fontSize = 50;
-    static Color color = {0, 20, 37, 0};
+    static Color color = {135, 206, 250, 0};
 
     if (color.a < 255) {
         color.a += 5;
@@ -64,10 +64,12 @@ void DrawYouLoseAnimation(void) {
 }
 
 void DrawButton(ButtonFinish button) {
-    DrawTexturePro(
-        button.texture,
-        (Rectangle){0, 0, button.texture.width, button.texture.height},
-        button.rect, (Vector2){0, 0}, 0.0f, button.color);
+    // DrawTexturePro(
+    //     button.texture,
+    //     (Rectangle){0, 0, button.texture.width, button.texture.height},
+    //     button.rect, (Vector2){0, 0}, 0.0f, button.color);
+
+    //DrawTextureEx(button.texture, (Vector2){SCREEN_WIDTH / 2 - 536 / 2}, 0 , 0, WHITE);
 }
 
 void CreateCenteredButton(const char *texturePath, float scaleX, float scaleY,
@@ -114,7 +116,7 @@ void init_finish_screen(void) {
     showPressEText = false;
     playerScaleX = 5.0f;
     playerScaleY = 5.0f;
-    background = LoadTexture("resource/finish_bg.png");
+    background = LoadTexture("resource/final_bg.png");
     
     char_stand_img_finish = LoadImage("resource/player.png");
     char_stand_right_finish = LoadTextureFromImage(char_stand_img_finish);
@@ -132,7 +134,7 @@ void init_finish_screen(void) {
     stock_finish.speedY = 1.0f;
     stock_finish.screenWidth = GetScreenWidth();
     stock_finish.screenHeight = GetScreenHeight();
-    stock_finish.jumpForce = 15;
+    stock_finish.jumpForce = 0;
     stock_finish.gravity = 0.5f;
     player.texture = LoadTexture("resource/player.png");
     player.pos = (Vector2){160,500};
@@ -192,12 +194,14 @@ void update_finish_screen(void) {
 }
 
 void draw_finish_screen(void) {
-    DrawTexturePro(
-        background,
-        (Rectangle){0.0f, 0.0f, (float)background.width,
-                    (float)-background.height},
-        (Rectangle){0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT},
-        (Vector2){0, 0}, 0.0f, WHITE);
+    // DrawTexturePro(
+    //     background,
+    //     (Rectangle){0.0f, 0.0f, (float)background.width,
+    //                 (float)-background.height},
+    //     (Rectangle){0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT},
+    //     (Vector2){0, 0}, 0.0f, WHITE);
+
+    DrawTextureEx(background, (Vector2) { 0, 0 }, 0, 4.5, WHITE);
 
     DrawTexturePro(
         player.texture,
