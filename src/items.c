@@ -9,8 +9,8 @@ Item* create_items_in_room(enum GameScreen current_screen) {
 
 	if (current_screen == LEVEL_ONE) {
 		Item* card = malloc(sizeof(Item)); // to unlock terminal
-		card->pos_vec.x = 525;
-		card->pos_vec.y = 530;
+		card->pos_vec.x = 560;
+		card->pos_vec.y = 560;
 		card->type = CARD;
 		card->isInInventory = false;
 		card->isAvaiable = false;

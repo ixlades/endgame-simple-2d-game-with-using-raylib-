@@ -20,6 +20,16 @@ Vector2 background_pos1;
 Texture2D exit_door_lvl1;
 
 static int finish_lvl_one_screen = 0;
+static int lvl_one_finished;
+
+bool check_puzzle_completion_lvl1(int result) {
+    if (result == 1) {
+        lvl_one_finished = 1;
+        return true;   
+    }
+    return false;
+
+}
 
 void init_level1_screen(void) {
    
@@ -56,6 +66,7 @@ void init_level1_screen(void) {
     player.isWalking = false;
     player.direction = 0;
     finish_lvl_one_screen = 0;
+    lvl_one_finished = 0;
     
 }
 
@@ -92,8 +103,7 @@ void update_level1_screen(void) {
 
     }
 
-    if (player.pos.x <= 90 && player.pos.y == 500)
-    {
+    if (player.pos.x <= 90 && player.pos.y == 500 && lvl_one_finished) {
         finish_lvl_one_screen = 1;
     }
     
@@ -107,7 +117,7 @@ void draw_level1_screen(void) {
 }
 
 void unload_level1_screen(void) {
-    UnloadTexture(player.texture);
+    // UnloadTexture(player.texture);
     UnloadImage(char_stand_img);
     UnloadImage(char_walk1_img);
     UnloadImage(char_walk2_img);
