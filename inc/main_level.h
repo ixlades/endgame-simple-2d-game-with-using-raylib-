@@ -22,6 +22,6 @@ void draw_main_level(void);
 void draw_player_lvl2(void);
 void update_main_level(void);
 void unload_main_level(void);
-bool isAllMissionDone(void);
+bool isAllMissionDone(int result);
 
 #endif

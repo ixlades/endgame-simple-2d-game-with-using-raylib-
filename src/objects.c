@@ -91,17 +91,17 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 		panel->alternative_texture = panel_tex;
 		panel->next = computer;
 
-		Object* box_2 = malloc(sizeof(Object));
-		box_2->pos_vec.x = 500;
-		box_2->pos_vec.y = 540;
-		box_2->interaction_type = TO_DESTROY;
-		box_2->isUnlocked = false;
-		box_2->item_to_unlock = DWANG;
-		box_2->puzzle_type = NONE;
-		box_2->hidden_item = SCREWDRIVER;
-		box_2->object_texture = box_tex;
-		box_2->alternative_texture = box_destroyed_tex;
-		box_2->next = panel;
+		// Object* box_2 = malloc(sizeof(Object));
+		// box_2->pos_vec.x = 500;
+		// box_2->pos_vec.y = 540;
+		// box_2->interaction_type = TO_DESTROY;
+		// box_2->isUnlocked = false;
+		// box_2->item_to_unlock = DWANG;
+		// box_2->puzzle_type = NONE;
+		// box_2->hidden_item = SCREWDRIVER;
+		// box_2->object_texture = box_tex;
+		// box_2->alternative_texture = box_destroyed_tex;
+		// box_2->next = panel;
 
 		Object* hide = malloc(sizeof(Object));
 		hide->pos_vec.x = 1170;
@@ -113,7 +113,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 		hide->hidden_item = CARD_FROM_DOOR;
 		hide->object_texture = hide_tex;
 		hide->alternative_texture = hide_tex;
-		hide->next = box_2;
+		hide->next = panel;
 
 		return hide;
 	}
@@ -214,11 +214,9 @@ void do_puzzles(Object *objects, Player protagonist) {
 		if (puzzle1_result == 1){
 			check_puzzle_completion_lvl1(puzzle1_result);
 		}
-		if (puzzle3_result == 1) {
-			//something
-		}
-		if (puzzle4_result == 1) {
-			// something
+		
+		if (puzzle3_result == 1 && puzzle4_result == 1) {
+			isAllMissionDone(puzzle3_result == 1 && puzzle4_result == 1);
 		}
 		curr_object->is_puzzle_opened = false;
 	}

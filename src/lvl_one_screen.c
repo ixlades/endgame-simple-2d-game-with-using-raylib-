@@ -70,7 +70,7 @@ void init_level1_screen(void) {
     stock_lvl1.speedY = 0.0f;
     stock_lvl1.screenWidth = GetScreenWidth();
     stock_lvl1.screenHeight = GetScreenHeight();
-    stock_lvl1.jumpForce = 6.5;
+    stock_lvl1.jumpForce = 0;
     stock_lvl1.gravity = 0.2f;
     player.texture = LoadTexture("resource/player.png");
     player.pos = (Vector2){410, 500};
