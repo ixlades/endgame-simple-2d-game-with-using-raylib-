@@ -3,8 +3,9 @@
 
 #include "movement.h"
 #include "screens.h"
+#include "hints.h"
 
-#define MISSIONS_DONE true
+#define MISSIONS_DONE false
 
 Texture2D main_bg;
 Texture2D platformTexture;

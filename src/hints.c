@@ -2,7 +2,8 @@
 
 Texture hint_e_tex;
 
-Window create_hint() {
+Window create_hint(void) {
+
 	hint_e_tex = LoadTexture("resource/hint_E.png");
 	Window hint_e;
 	hint_e.window_texture = hint_e_tex;
