@@ -10,8 +10,6 @@ bool victory_pz3 = false;
 double victoryTimer = 0.0;
 const double victoryDelay = 1.0;
 
-//double timerSeconds = 15.0;
-
 Rectangle images_pz3[NUM_IMAGES];
 bool imagesVisible[NUM_IMAGES];
 
