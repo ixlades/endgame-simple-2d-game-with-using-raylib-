@@ -67,11 +67,13 @@ void movement(Rectangle *position, SizeData *stock) {
     if ((position->x + stock->speedX) <= stock->screenWidth - position->width) {
         if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
             position->x += stock->speedX;
+            player.pos.x = position->x;
         } 
     }
     if ((position->x - stock->speedX) >= 0) {
         if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
             position->x -= stock->speedX;
+            player.pos.x = position->x;
         }
     }
 }

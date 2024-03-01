@@ -14,6 +14,7 @@
 //#include "../inc/main_level.h"
 #include "../inc/puzzle3.h"
 #include "../inc/puzzle4.h"
+#include "../inc/main_level.h"
 
 enum GameScreen current_screen = MENU;
 int exit_game = 0;
@@ -140,9 +141,6 @@ void update_draw_frame(void) {
         break;
     }
 
-    if (current_screen > MENU_ABOUT) { // inventory will be drawn only on our levels
-        draw_inventory(inventory, new_slot_index);
-    }
      // draw items and objects if they exist in room
     if (items != NULL) {
         draw_items(items);
@@ -153,6 +151,15 @@ void update_draw_frame(void) {
     do_items(items, inventory, player, hint); // doing items logic
     do_objects(objects, player, inventory, new_slot_index, hint, items); // doing objects logic
     do_puzzles(objects, player); // doing puzzles
+
+    if (current_screen == LEVEL_ONE) {
+        draw_player();
+    }
+    if (current_screen == LEVEL_TWO) {
+        draw_player_lvl2();
+    }  
+    if (current_screen > MENU_ABOUT) { // inventory will be drawn only on our levels
+    draw_inventory(inventory, new_slot_index);
 
     EndDrawing();
 }

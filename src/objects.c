@@ -10,6 +10,8 @@ Texture note_tex;
 Texture computer_tex;
 Texture computer_unlocked_tex;
 Texture panel_tex;
+Texture hide_tex;
+Texture safe_tex;
 
 int puzzle1_result;
 int puzzle3_result;
@@ -24,6 +26,7 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 	computer_tex = LoadTexture("resource/computer.png");
 	computer_unlocked_tex = LoadTexture("resource/computer_unlocked.png");
 	panel_tex = LoadTexture("resource/panel.png");
+	hide_tex = LoadTexture("C:/Users/38097/Desktop/rep_4/resource/hide.png");
 	
 
 	if (current_screen == LEVEL_ONE) {
@@ -62,19 +65,23 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 		note->object_texture = note_tex;
 		note->next = terminal;
 
+		return note;
+	}
+	if (current_screen == LEVEL_TWO) {
+
 		Object* computer = malloc(sizeof(Object));
-		computer->pos_vec.x = 300;
-		computer->pos_vec.y = 520;
+		computer->pos_vec.x = 45;
+		computer->pos_vec.y = 159;
 		computer->interaction_type = TO_OPEN;
 		computer->isUnlocked = true;
 		computer->puzzle_type = PUZZLE_3;
 		computer->is_puzzle_opened = false;
 		computer->object_texture = computer_tex;
 		computer->alternative_texture = computer_unlocked_tex;
-		computer->next = note;
+		computer->next = NULL;
 
 		Object* panel = malloc(sizeof(Object));
-		panel->pos_vec.x = 990;
+		panel->pos_vec.x = 900;
 		panel->pos_vec.y = 540;
 		panel->interaction_type = TO_OPEN;
 		panel->isUnlocked = true;
@@ -84,8 +91,31 @@ Object* create_objects_in_room(enum GameScreen current_screen) {
 		panel->alternative_texture = panel_tex;
 		panel->next = computer;
 
+		Object* box_2 = malloc(sizeof(Object));
+		box_2->pos_vec.x = 500;
+		box_2->pos_vec.y = 540;
+		box_2->interaction_type = TO_DESTROY;
+		box_2->isUnlocked = false;
+		box_2->item_to_unlock = DWANG;
+		box_2->puzzle_type = NONE;
+		box_2->hidden_item = SCREWDRIVER;
+		box_2->object_texture = box_tex;
+		box_2->alternative_texture = box_destroyed_tex;
+		box_2->next = panel;
 
-		return panel;
+		Object* hide = malloc(sizeof(Object));
+		hide->pos_vec.x = 1170;
+		hide->pos_vec.y = 600;
+		hide->interaction_type = TO_DESTROY;
+		hide->isUnlocked = false;
+		hide->item_to_unlock = SCREWDRIVER;
+		hide->puzzle_type = NONE;
+		hide->hidden_item = CARD_FROM_DOOR;
+		hide->object_texture = hide_tex;
+		hide->alternative_texture = hide_tex;
+		hide->next = box_2;
+
+		return hide;
 	}
 	return NULL;
 }
