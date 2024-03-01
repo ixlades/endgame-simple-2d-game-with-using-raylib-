@@ -30,7 +30,7 @@ Texture2D char_walk2_left_level2;
 SizeData stock;
 
 void init_main_level(void) {
-    main_bg = LoadTexture("resource/finish_bg.png");
+    main_bg = LoadTexture("resource/background_lvl2.png");
     platformTexture = LoadTexture("resource/platform1.png");
     platformTextureSmall = LoadTexture("resource/platform2.png");
     characterTexture = LoadTexture("resource/player.png");
@@ -89,15 +89,16 @@ void draw_platforms(void) {
 }
 
 void draw_main_level(void) {
-    DrawTexturePro(
-            main_bg,
-            (Rectangle){0.0f, 0.0f, (float)main_bg.width,
-                        (float)-main_bg.height},
-            (Rectangle){0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT},
-            (Vector2){0, 0}, 0.0f, BROWN);
+    // DrawTexturePro(
+    //         main_bg,
+    //         (Rectangle){0.0f, 0.0f, (float)main_bg.width,
+    //                     (float)-main_bg.height},
+    //         (Rectangle){0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT},
+    //         (Vector2){0, 0}, 0.0f, BROWN);
+    DrawTextureEx(main_bg, (Vector2) {0, 0}, 0 , 4.5, WHITE);
     draw_platforms();
-    DrawTextureEx(characterTexture, (Vector2){characer.x - characer.width - 10,
-                                           characer.y - characer.height }, 0.0, 6.0, WHITE);
+    // DrawTextureEx(characterTexture, (Vector2){characer.x - characer.width - 10,
+    //                                        characer.y - characer.height }, 0.0, 6.0, WHITE);
     DrawTextureEx(doorMainLevelTexture, (Vector2){ doorMainLevel.x ,
                   doorMainLevel.y}, 0.0, 5.0, WHITE);
     if (CheckCollisionRecs(characer, platform[0])) {
@@ -107,6 +108,10 @@ void draw_main_level(void) {
         }
     }
    // DrawRectangle(characer.x, characer.y, characer.width, characer.height, WHITE);
+}
+
+void draw_player_lvl2(void) {
+    DrawTextureEx(characterTexture, (Vector2) { characer.x - characer.width - 10, characer.y - characer.height}, 0.0, 6.0, WHITE);
 }
 
 void update_main_level(void) {

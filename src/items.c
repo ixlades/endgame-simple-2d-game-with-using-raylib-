@@ -2,10 +2,13 @@
 #include <math.h>
 Texture item_card_tex;
 Texture item_dwang_tex;
+Texture item_screwdriver_tex;
+Texture item_card_from_door_tex;
 
 Item* create_items_in_room(enum GameScreen current_screen) {
 	item_card_tex = LoadTexture("resource/Item_card.png");
 	item_dwang_tex = LoadTexture("resource/Item_dwang.png");
+	item_screwdriver_tex = LoadTexture("/resource/item_screwdriver.png");
 
 	if (current_screen == LEVEL_ONE) {
 		Item* card = malloc(sizeof(Item)); // to unlock terminal
@@ -18,8 +21,8 @@ Item* create_items_in_room(enum GameScreen current_screen) {
 		card->next = NULL;
 
 		Item* dwang = malloc(sizeof(Item)); // to destroy box
-		dwang->pos_vec.x = 700;
-		dwang->pos_vec.y = 600;
+		dwang->pos_vec.x = 750;
+		dwang->pos_vec.y = 640;
 		dwang->type = DWANG;
 		dwang->isInInventory = false;
 		dwang->isAvaiable = true;
@@ -27,6 +30,18 @@ Item* create_items_in_room(enum GameScreen current_screen) {
 		dwang->next = card;
 
 		return dwang;
+	}
+		if (current_screen == LEVEL_TWO) {
+		Item* screwdriver = malloc(sizeof(Item));
+		screwdriver->pos_vec.x = 550;
+		screwdriver->pos_vec.y = 620;
+		screwdriver->type = SCREWDRIVER;
+		screwdriver->isInInventory = false;
+		screwdriver->isAvaiable = false;
+		screwdriver->item_texture = item_screwdriver_tex;
+		screwdriver->next = NULL;
+
+		return screwdriver;
 	}
 	return NULL;
 }

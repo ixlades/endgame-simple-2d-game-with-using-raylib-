@@ -19,5 +19,7 @@ enum item_type {
 	EMPTY,
 	KEY,
 	CARD,
-	DWANG
+	DWANG,
+	SCREWDRIVER,
+	CARD_FROM_DOOR
 };

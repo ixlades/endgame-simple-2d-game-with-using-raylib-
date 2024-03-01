@@ -15,6 +15,9 @@ Texture2D char_walk2_right;
 Texture2D char_walk2_left;
 SizeData stock_lvl1 = {0};
 
+Texture wall;
+Vector2 wall_pos;
+
 Vector2 background_pos;
 Vector2 background_pos1;
 Texture2D exit_door_lvl1;
@@ -34,7 +37,11 @@ bool check_puzzle_completion_lvl1(int result) {
 void init_level1_screen(void) {
    
     background_texture_lvl1 = LoadTexture("resource/level_one_bg.png");
-    exit_door_lvl1 = LoadTexture("resource/door_lvl_one.png");
+    exit_door_lvl1 = LoadTexture("resource/door_lvl_1.png");
+    wall = LoadTexture("C:/Users/38097/Desktop/rep_4/resource/wall.png");
+    wall_pos.x = 0;
+    wall_pos.y = 0;
+
     background_pos.x = 0;
     background_pos.y = 0;
     background_pos1.x = 1008;
@@ -112,8 +119,11 @@ void update_level1_screen(void) {
 void draw_level1_screen(void) {
     DrawTextureEx(background_texture_lvl1, background_pos1, 0.0, 3.5, WHITE);
     DrawTextureEx(background_texture_lvl1, background_pos, 0.0, 3.5, WHITE);
-    DrawTextureEx(player.texture, player.pos, 0.0, 6.0, WHITE);
     DrawTextureEx(exit_door_lvl1,(Vector2){50,550},0.0f,5.0f,WHITE);
+}
+
+void draw_player(void) {
+    DrawTextureEx(player.texture, player.pos, 0.0, 6.0, WHITE);
 }
 
 void unload_level1_screen(void) {
